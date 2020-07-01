@@ -45,6 +45,7 @@ namespace Transport_Company
                     {
                         TempStrings = Mas[i].Split(';');
                         Price[Convert.ToInt32(TempStrings[0])-1, Convert.ToInt32(TempStrings[1])-1] = Convert.ToInt32(TempStrings[2]);
+                        Price[Convert.ToInt32(TempStrings[1]) - 1, Convert.ToInt32(TempStrings[0]) - 1] = Convert.ToInt32(TempStrings[2]);
                     }
                     label2.Text = "Статус: база загружена";
                 }
