@@ -32,7 +32,31 @@ namespace Transport_Company
             Algo = new Deixtra(Nodes);
             Algo.Run(Convert.ToInt32(textBox2.Text) - 1);
             label1.Text = "Стоимость: " + Convert.ToString(Algo.nodes[Convert.ToInt32(textBox3.Text) - 1].CurrentValue);
-            
+            bool flag = true;
+            int temp = Convert.ToInt32(textBox3.Text) - 1;
+            List<int> ROAD = new List<int>();
+            while (flag)
+            {
+                if (Algo.nodes[Convert.ToInt32(textBox3.Text) - 1].CurrentValue == 999999)
+                {
+                    label5.Text = "Маршрут не найден!";
+                    return;
+                }
+                if (ROAD.Count > 0)
+                    if (Nodes[temp].PrevNode == ROAD.Last())
+                        break;
+                ROAD.Add(Nodes[temp].PrevNode);
+                if (ROAD.Last() == Convert.ToInt32(textBox2.Text) - 1)
+                    flag = false;
+                temp = ROAD.Last();
+            }
+            label5.Text = "Маршрут: ";
+            for (int i = 0; i < ROAD.Count; i++)
+            {
+                label5.Text += Convert.ToString(ROAD[ROAD.Count - i - 1] + 1) + " ";
+            }
+            label5.Text += Convert.ToInt32(textBox3.Text);
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
