@@ -28,6 +28,12 @@ namespace Transport_Company
 
         private void button1_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < 20; i++)
+            {
+                Nodes[i].Checked = false;
+                Nodes[i].CurrentValue = 999999;
+            }
+
             Nodes[Convert.ToInt32(textBox2.Text) - 1].CurrentValue = 0;
             Algo = new Deixtra(Nodes);
             Algo.Run(Convert.ToInt32(textBox2.Text) - 1);
