@@ -8,7 +8,7 @@ namespace Transport_Company
 {
     public class Deixtra
     {
-
+        
         public Node[] nodes { get; private set; }
 
         public Node BeginPoint { get; private set; }
@@ -18,15 +18,14 @@ namespace Transport_Company
             nodes = pointsOfgrath;
         }
 
-        public void Run(int beginp)
+        public void Run()
         {
-            Step(beginp);
-            for (int i = 0; i < nodes[beginp].Roads.Count; i++)
+            while (true)
             {
-                if (nodes[nodes[beginp].Roads[i][0]].Checked != true)
-                {
-                    Run(nodes[beginp].Roads[i][0]);
-                }
+                if (FindNextHop() != -1)
+                    Step(FindNextHop());
+                else
+                    return;
             }
 
         }
@@ -45,5 +44,17 @@ namespace Transport_Company
             nodes[beginpoint].Checked = true;
         }
 
+        private int FindNextHop()
+        {
+            int min = 999999;
+            int result = -1;
+            for (int i = 0; i < 20; i++)
+                if (nodes[i].Checked == false && nodes[i].CurrentValue < min)
+                {
+                    min = nodes[i].CurrentValue;
+                    result = i;
+                }
+            return result;
+        }
     }
 }

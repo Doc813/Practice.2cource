@@ -36,7 +36,7 @@ namespace Transport_Company
 
             Nodes[Convert.ToInt32(textBox2.Text) - 1].CurrentValue = 0;
             Algo = new Deixtra(Nodes);
-            Algo.Run(Convert.ToInt32(textBox2.Text) - 1);
+            Algo.Run();
             label1.Text = "Стоимость: " + Convert.ToString(Algo.nodes[Convert.ToInt32(textBox3.Text) - 1].CurrentValue);
             bool flag = true;
             int temp = Convert.ToInt32(textBox3.Text) - 1;
